@@ -1,0 +1,7 @@
+title: AI 周报
+description: 每周 AI 领域动态精选
+url: "https://kdl-in.github.io"
+baseurl: "/ai-weekly"
+theme: minima
+plugins:
+  - jekyll-feed
