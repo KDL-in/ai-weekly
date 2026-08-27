@@ -4,9 +4,11 @@
 
 - 在线阅读：https://kdl-in.github.io/ai-weekly/
 - **统一订阅（RSS）**：https://kdl-in.github.io/ai-weekly/feed.xml
+- 信源列表：https://kdl-in.github.io/ai-weekly/sources.html
 - 仓库：https://github.com/KDL-in/ai-weekly
 
-订阅上述 RSS 后，每期发布会自动推送到阅读器。
+订阅上述 RSS 后，每期发布会自动推送到阅读器。  
+推荐新信源：在仓库提 [推荐信源 Issue](https://github.com/KDL-in/ai-weekly/issues/new?template=source-request.yml)，合并后更新 `sources.json`。
 
 ## 目录结构
 

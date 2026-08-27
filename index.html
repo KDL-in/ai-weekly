@@ -158,6 +158,39 @@ a:hover { text-decoration: underline; }
   color: var(--text-meta);
 }
 
+/* —— 信源入口 —— */
+.sources-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--accent-insight);
+  border-radius: 10px;
+  padding: 1.15rem 1.3rem;
+  margin-bottom: 2.75rem;
+}
+.sources-entry__text { min-width: 0; flex: 1 1 220px; }
+.sources-entry__title {
+  margin: 0 0 0.3rem;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.sources-entry__desc {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+.sources-entry__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 /* —— 往期 —— */
 .archives__head {
   display: flex;
@@ -260,6 +293,17 @@ a:hover { text-decoration: underline; }
       <p class="subscribe__hint">适用于 Feedly、Inoreader、NetNewsWire、Reeder，以及系统自带的「新闻 / 邮件」等任意 RSS 阅读器。</p>
     </section>
 
+    <section class="sources-entry" aria-label="信源列表">
+      <div class="sources-entry__text">
+        <h2 class="sources-entry__title">信源列表</h2>
+        <p class="sources-entry__desc">当前收录 23 个公开信源。欢迎提 Issue 推荐新源，我们会按社区建议扩充。</p>
+      </div>
+      <div class="sources-entry__actions">
+        <a class="btn" href="/ai-weekly/sources.html">查看列表</a>
+        <a class="btn btn--ghost" href="https://github.com/KDL-in/ai-weekly/issues/new?template=source-request.yml" target="_blank" rel="noopener">推荐信源</a>
+      </div>
+    </section>
+
     <section class="archives" aria-label="往期周刊">
       <div class="archives__head">
         <h2 class="archives__title">往期周刊</h2>
@@ -277,7 +321,7 @@ a:hover { text-decoration: underline; }
     </section>
 
     <footer class="footer">
-      <span>订阅地址：<a href="/ai-weekly/feed.xml">feed.xml</a></span>
+      <span>订阅：<a href="/ai-weekly/feed.xml">RSS</a> · <a href="/ai-weekly/sources.html">信源列表</a></span>
       <span><a href="https://github.com/KDL-in/ai-weekly">GitHub</a></span>
     </footer>
   </div>

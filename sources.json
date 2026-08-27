@@ -1,0 +1,167 @@
+{
+  "updated": "2026-08-27",
+  "note": "本列表为 AI 周刊当前收录的公开信源。欢迎通过 GitHub Issue 推荐新信源。",
+  "sources": [
+    {
+      "name": "OpenAI Blog",
+      "type": "RSS",
+      "feed_url": "https://openai.com/blog/rss.xml",
+      "homepage": "https://openai.com/",
+      "tags": []
+    },
+    {
+      "name": "Peter Steinberger",
+      "type": "RSS",
+      "feed_url": "https://steipete.me/rss.xml",
+      "homepage": "https://steipete.me/",
+      "tags": []
+    },
+    {
+      "name": "Simon Willison",
+      "type": "RSS",
+      "feed_url": "https://simonwillison.net/atom/everything/",
+      "homepage": "https://simonwillison.net/",
+      "tags": []
+    },
+    {
+      "name": "南语（thenanyu）",
+      "type": "RSS",
+      "feed_url": "https://thenanyu.com/feed.xml",
+      "homepage": "https://thenanyu.com/",
+      "tags": []
+    },
+    {
+      "name": "宝玉",
+      "type": "RSS",
+      "feed_url": "https://baoyu.io/feed.xml",
+      "homepage": "https://baoyu.io/",
+      "tags": []
+    },
+    {
+      "name": "阮一峰的网络日志",
+      "type": "RSS",
+      "feed_url": "https://www.ruanyifeng.com/blog/atom.xml",
+      "homepage": "https://www.ruanyifeng.com/",
+      "tags": []
+    },
+    {
+      "name": "Ai Daily Brief",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYdbiyFFbDr-vEgm_TqQhCA",
+      "homepage": "https://www.youtube.com/channel/UCYdbiyFFbDr-vEgm_TqQhCA",
+      "tags": []
+    },
+    {
+      "name": "Andrej Karpathy",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCXUPKJO5MZQN11PqgIvyuvQ",
+      "homepage": "https://www.youtube.com/channel/UCXUPKJO5MZQN11PqgIvyuvQ",
+      "tags": []
+    },
+    {
+      "name": "Anthropic",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCOIji0UklfggVrY7Ym-IfDQ",
+      "homepage": "https://www.youtube.com/channel/UCOIji0UklfggVrY7Ym-IfDQ",
+      "tags": []
+    },
+    {
+      "name": "Dwarkesh Patel",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCXl4i9dYBrFOabk0xGmbkRA",
+      "homepage": "https://www.youtube.com/channel/UCXl4i9dYBrFOabk0xGmbkRA",
+      "tags": []
+    },
+    {
+      "name": "Every",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCiJEYFVVhn_oKbAdIAWdNpg",
+      "homepage": "https://www.youtube.com/channel/UCiJEYFVVhn_oKbAdIAWdNpg",
+      "tags": []
+    },
+    {
+      "name": "Google DeepMind",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCP7jMXSY2xbc3KCAE0MHQ-A",
+      "homepage": "https://www.youtube.com/channel/UCP7jMXSY2xbc3KCAE0MHQ-A",
+      "tags": []
+    },
+    {
+      "name": "Hung-yi Lee",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC2ggjtuuWvxrHHHiaDH1dlQ",
+      "homepage": "https://www.youtube.com/channel/UC2ggjtuuWvxrHHHiaDH1dlQ",
+      "tags": []
+    },
+    {
+      "name": "Latent Space",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCxBcwypKK-W3GHd_RZ9FZrQ",
+      "homepage": "https://www.youtube.com/channel/UCxBcwypKK-W3GHd_RZ9FZrQ",
+      "tags": []
+    },
+    {
+      "name": "Lenny's Podcast",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC6t1O76G0jYXOAoYCm153dA",
+      "homepage": "https://www.youtube.com/channel/UC6t1O76G0jYXOAoYCm153dA",
+      "tags": []
+    },
+    {
+      "name": "Lex Fridman",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCSHZKyawb77ixDdsGog4iWA",
+      "homepage": "https://www.youtube.com/channel/UCSHZKyawb77ixDdsGog4iWA",
+      "tags": []
+    },
+    {
+      "name": "Mckay Wrigley",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCXZFVVCFahewxr3est7aT7Q",
+      "homepage": "https://www.youtube.com/channel/UCXZFVVCFahewxr3est7aT7Q",
+      "tags": []
+    },
+    {
+      "name": "No Priors: AI, Machine Learning, Tech, & Startups",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCSI7h9hydQ40K5MJHnCrQvw",
+      "homepage": "https://www.youtube.com/channel/UCSI7h9hydQ40K5MJHnCrQvw",
+      "tags": []
+    },
+    {
+      "name": "OpenAI",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCXZCJLdBC09xxGZ6gcdrc6A",
+      "homepage": "https://www.youtube.com/channel/UCXZCJLdBC09xxGZ6gcdrc6A",
+      "tags": []
+    },
+    {
+      "name": "Peter Yang",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCkAmYcWuRcxPGm1QDxA-ZGw",
+      "homepage": "https://www.youtube.com/channel/UCkAmYcWuRcxPGm1QDxA-ZGw",
+      "tags": []
+    },
+    {
+      "name": "Ras Mic",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCBX__dPYqDFqAN4QcWbnUbw",
+      "homepage": "https://www.youtube.com/channel/UCBX__dPYqDFqAN4QcWbnUbw",
+      "tags": []
+    },
+    {
+      "name": "Riley Brown",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCDSIX7D8QvF9D45n_lKEhXQ",
+      "homepage": "https://www.youtube.com/channel/UCDSIX7D8QvF9D45n_lKEhXQ",
+      "tags": []
+    },
+    {
+      "name": "Wireless Philosophy",
+      "type": "YOUTUBE",
+      "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCpvhlSLzg2LT89FNUuN-Sig",
+      "homepage": "https://www.youtube.com/channel/UCpvhlSLzg2LT89FNUuN-Sig",
+      "tags": []
+    }
+  ]
+}

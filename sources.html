@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>信源列表 · AI 周刊</title>
+  <meta name="description" content="AI 周刊当前收录的公开信源。欢迎通过 GitHub Issue 推荐新信源。">
+  <link rel="alternate" type="application/rss+xml" title="AI 周刊" href="/ai-weekly/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg-page: #faf9f6;
+  --bg-card: #ffffff;
+  --bg-card-muted: #fcfcfa;
+  --text-primary: #1a1a1a;
+  --text-body: #333333;
+  --text-muted: #888888;
+  --text-meta: #9ca3af;
+  --border-strong: #1a1a1a;
+  --border-subtle: #e5e5e0;
+  --accent-red: #c53030;
+  --accent-red-bg: #fff5f5;
+  --accent-insight: #5a9ba5;
+  --font-serif: "Noto Serif SC", Georgia, "Songti SC", serif;
+  --font-sans: "PingFang SC", Inter, system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  color: var(--text-body);
+  background: var(--bg-page);
+}
+a { color: var(--accent-insight); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.layout { max-width: 720px; margin: 0 auto; padding: 1.5rem 1.5rem 3rem; }
+
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+.site-nav a { color: var(--text-muted); }
+.site-nav a:hover { color: var(--accent-insight); }
+.site-nav__brand {
+  font-family: var(--font-serif);
+  color: var(--text-primary) !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+.site-nav__links { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.page-head { margin: 1rem 0 1.75rem; }
+.page-head h1 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 5vw, 2.2rem);
+  color: var(--text-primary);
+  font-weight: 700;
+}
+.page-head p {
+  margin: 0.75rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.suggest {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--accent-red);
+  border-radius: 10px;
+  padding: 1.15rem 1.25rem;
+  margin-bottom: 2rem;
+}
+.suggest h2 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+.suggest p {
+  margin: 0 0 0.9rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-strong);
+  background: var(--text-primary);
+  color: #fff !important;
+  font-size: 0.875rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  text-decoration: none !important;
+}
+.btn:hover { opacity: 0.9; }
+
+.group { margin-bottom: 2rem; }
+.group__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.group__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.group__count { font-size: 0.85rem; color: var(--text-muted); }
+
+.source-list { list-style: none; padding: 0; margin: 0; }
+.source-list li {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  margin-bottom: 0.55rem;
+}
+.source-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.15rem;
+}
+.source-name {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.source-name a { color: inherit; }
+.source-name a:hover { color: var(--accent-insight); }
+.source-type {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-insight);
+  background: #eef6f7;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+}
+.status { color: var(--text-muted); font-size: 0.9rem; padding: 1rem 0; }
+.footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+.footer a { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <nav class="site-nav">
+      <a class="site-nav__brand" href="/ai-weekly/">AI 周刊</a>
+      <div class="site-nav__links">
+        <a href="/ai-weekly/">首页</a>
+        <a href="/ai-weekly/feed.xml">RSS</a>
+      </div>
+    </nav>
+
+    <header class="page-head">
+      <h1>信源列表</h1>
+      <p>周刊内容来自这些公开信源。我们持续收录，也会根据社区推荐扩充。</p>
+    </header>
+
+    <section class="suggest" aria-label="推荐信源">
+      <h2>想推荐新信源？</h2>
+      <p>在 GitHub 提一个 Issue，写上名称、类型（RSS / YouTube）和链接。我们评审后会加入本列表。</p>
+      <a class="btn" href="https://github.com/KDL-in/ai-weekly/issues/new?template=source-request.yml" target="_blank" rel="noopener">提交推荐 Issue</a>
+    </section>
+
+    <div id="app"><p class="status">加载信源列表…</p></div>
+
+    <footer class="footer">
+      列表数据：<a href="/ai-weekly/sources.json">sources.json</a>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const TYPE_LABEL = { RSS: 'RSS', YOUTUBE: 'YouTube' };
+      const app = document.getElementById('app');
+
+      function esc(s) {
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function groupByType(sources) {
+        const order = ['RSS', 'YOUTUBE'];
+        const map = {};
+        for (const s of sources) {
+          (map[s.type] ||= []).push(s);
+        }
+        return order
+          .filter((t) => map[t] && map[t].length)
+          .map((t) => ({ type: t, items: map[t] }));
+      }
+
+      function render(data) {
+        const groups = groupByType(data.sources || []);
+        if (!groups.length) {
+          app.innerHTML = '<p class="status">暂无信源。</p>';
+          return;
+        }
+        app.innerHTML = groups.map((g) => {
+          const label = TYPE_LABEL[g.type] || g.type;
+          const items = g.items.map((s) => {
+            const href = s.homepage || s.feed_url;
+            return `<li><div class="source-row"><div class="source-name"><a href="${esc(href)}" target="_blank" rel="noopener">${esc(s.name)}</a></div><span class="source-type">${esc(label)}</span></div></li>`;
+          }).join('');
+          return `<section class="group"><div class="group__head"><h2 class="group__title">${esc(label)}</h2><span class="group__count">${g.items.length} 个</span></div><ul class="source-list">${items}</ul></section>`;
+        }).join('');
+      }
+
+      fetch('/ai-weekly/sources.json')
+        .then((r) => {
+          if (!r.ok) throw new Error('load failed');
+          return r.json();
+        })
+        .then(render)
+        .catch(() => {
+          app.innerHTML = '<p class="status">信源列表加载失败，请稍后重试，或直接打开 <a href="/ai-weekly/sources.json">sources.json</a>。</p>';
+        });
+    })();
+  </script>
+</body>
+</html>

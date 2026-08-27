@@ -1,0 +1,35 @@
+name: 推荐信源
+description: 向 AI 周刊推荐新的公开信源
+title: "推荐信源: "
+labels: ["source-request"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: 信源名称
+      placeholder: 例如 Simon Willison
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: 类型
+      options:
+        - RSS
+        - YouTube
+        - 其他
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: 链接
+      description: RSS feed 地址，或 YouTube 频道 / 视频 feed 地址
+      placeholder: https://…
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: 推荐理由（可选）
+      placeholder: 为什么值得加入周刊信源？
