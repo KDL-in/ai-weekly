@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>AI 周报</title>
+    <title>AI 周刊</title>
     <link>https://kdl-in.github.io/ai-weekly/</link>
-    <description>每周 AI 领域动态精选</description>
+    <description>每周精选 AI 产品、观点与趋势。订阅本 Feed 即可自动收到新一期。</description>
     <language>zh-CN</language>
     <item>
       <title>AI 周刊 2026-W34</title>

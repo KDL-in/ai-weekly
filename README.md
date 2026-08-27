@@ -1,10 +1,12 @@
-# AI 周报
+# AI 周刊
 
-每周 AI 领域动态精选（静态 HTML，托管于 GitHub Pages）。
+每周精选 AI 产品、观点与趋势（静态 HTML，托管于 GitHub Pages）。
 
 - 在线阅读：https://kdl-in.github.io/ai-weekly/
-- RSS 订阅：https://kdl-in.github.io/ai-weekly/feed.xml
+- **统一订阅（RSS）**：https://kdl-in.github.io/ai-weekly/feed.xml
 - 仓库：https://github.com/KDL-in/ai-weekly
+
+订阅上述 RSS 后，每期发布会自动推送到阅读器。
 
 ## 目录结构
 

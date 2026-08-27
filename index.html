@@ -3,96 +3,309 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI 周报</title>
-  <link rel="alternate" type="application/rss+xml" title="AI 周报" href="/ai-weekly/feed.xml">
+  <title>AI 周刊</title>
+  <meta name="description" content="每周精选 AI 产品、观点与趋势。订阅 RSS，新一期自动送达。">
+  <link rel="alternate" type="application/rss+xml" title="AI 周刊" href="/ai-weekly/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
 :root {
   --bg-page: #faf9f6;
   --bg-card: #ffffff;
+  --bg-card-muted: #fcfcfa;
   --text-primary: #1a1a1a;
   --text-body: #333333;
   --text-muted: #888888;
+  --text-meta: #9ca3af;
   --border-strong: #1a1a1a;
   --border-subtle: #e5e5e0;
   --accent-red: #c53030;
+  --accent-red-bg: #fff5f5;
   --accent-insight: #5a9ba5;
+  --font-serif: "Noto Serif SC", Georgia, "Songti SC", serif;
+  --font-sans: "PingFang SC", Inter, system-ui, sans-serif;
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: 'PingFang SC', Inter, system-ui, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-sans);
+  line-height: 1.6;
   color: var(--text-body);
   background: var(--bg-page);
 }
 a { color: var(--accent-insight); text-decoration: none; }
 a:hover { text-decoration: underline; }
-.layout { max-width: 960px; margin: 0 auto; padding: 1.5rem; }
+.layout {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+/* —— 刊头 —— */
 .masthead {
   text-align: center;
-  padding: 2.5rem 0 2rem;
-  border-bottom: 1px solid var(--border-strong);
-  margin-bottom: 2rem;
+  padding: 2.75rem 0 2rem;
 }
-.masthead h1 {
+.masthead__brand {
   margin: 0;
-  font-family: 'Noto Serif SC', Georgia, serif;
-  font-size: 2.25rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 7vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--text-primary);
+  line-height: 1.15;
 }
-.masthead p { margin: 0.75rem 0 0; color: var(--text-muted); }
-.issue-list { list-style: none; padding: 0; margin: 0; }
-.issue-list li {
+.masthead__tagline {
+  margin: 1rem 0 0;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--border-strong);
+  margin: 0 0 2rem;
+}
+
+/* —— 介绍 —— */
+.intro {
+  text-align: center;
+  max-width: 34em;
+  margin: 0 auto 2.25rem;
+  color: var(--text-body);
+  font-size: 0.98rem;
+}
+.intro p { margin: 0 0 0.75rem; }
+.intro p:last-child { margin-bottom: 0; color: var(--text-muted); font-size: 0.92rem; }
+
+/* —— 订阅 —— */
+.subscribe {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-left: 4px solid var(--accent-red);
   border-radius: 10px;
-  margin-bottom: 0.75rem;
+  padding: 1.35rem 1.4rem 1.45rem;
+  margin-bottom: 2.75rem;
+}
+.subscribe__title {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.subscribe__desc {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.subscribe__url-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+.subscribe__url {
+  flex: 1 1 220px;
+  min-width: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--text-primary);
+  background: var(--bg-card-muted);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.7rem 0.85rem;
+  word-break: break-all;
+}
+.subscribe__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.btn {
+  appearance: none;
+  border: 1px solid var(--border-strong);
+  background: var(--text-primary);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+.btn:hover { opacity: 0.9; text-decoration: none; }
+.btn--ghost {
+  background: transparent;
+  color: var(--text-primary);
+}
+.btn.is-copied {
+  background: var(--accent-insight);
+  border-color: var(--accent-insight);
+}
+.subscribe__hint {
+  margin: 0.85rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-meta);
+}
+
+/* —— 往期 —— */
+.archives__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.archives__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.archives__count {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.issue-list { list-style: none; padding: 0; margin: 0; }
+.issue-list li {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--accent-insight);
+  border-radius: 10px;
+  margin-bottom: 0.65rem;
 }
 .issue-list a.issue-row {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 1rem;
-  padding: 1.1rem 1.35rem;
+  padding: 1rem 1.25rem;
   color: inherit;
   text-decoration: none;
 }
-.issue-list a.issue-row:hover { background: #fcfcfa; }
+.issue-list a.issue-row:hover { background: var(--bg-card-muted); }
 .issue-title {
-  font-family: 'Noto Serif SC', Georgia, serif;
-  font-size: 1.15rem;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
   color: var(--text-primary);
   font-weight: 600;
 }
-.issue-meta { color: var(--text-muted); font-size: 0.85rem; white-space: nowrap; }
+.issue-meta {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
 .footer {
-  margin-top: 2.5rem;
-  padding-top: 1rem;
+  margin-top: 2.75rem;
+  padding-top: 1.1rem;
   border-top: 1px solid var(--border-subtle);
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
 }
-</style>
+.footer a { color: var(--text-muted); }
+.footer a:hover { color: var(--accent-insight); }
+
+@media (max-width: 560px) {
+  .issue-list a.issue-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  .issue-meta { white-space: normal; }
+}
+  </style>
 </head>
 <body>
   <div class="layout">
     <header class="masthead">
-      <h1>AI 周报</h1>
-      <p>每周 AI 领域动态精选 · 共 7 期</p>
+      <h1 class="masthead__brand">AI 周刊</h1>
+      <p class="masthead__tagline">每周精选 AI 产品、观点与趋势</p>
     </header>
-    <ul class="issue-list">
-      <li><a class="issue-row" href="/ai-weekly/issues/2026-W34.html"><span class="issue-title">AI 周刊 2026-W34</span><span class="issue-meta">2026-08-17T00:00:00+08:00 ~ 2026-08-24T00:00:00+08:00</span></a></li><li><a class="issue-row" href="/ai-weekly/issues/2026-W33.html"><span class="issue-title">AI 周刊 2026-W33</span><span class="issue-meta">2026-08-10T00:00:00+08:00 ~ 2026-08-17T00:00:00+08:00</span></a></li><li><a class="issue-row" href="/ai-weekly/issues/2026-W32.html"><span class="issue-title">AI 周刊 2026-W32</span><span class="issue-meta">2026-08-03T00:00:00+08:00 ~ 2026-08-10T00:00:00+08:00</span></a></li><li><a class="issue-row" href="/ai-weekly/issues/2026-W29.html"><span class="issue-title">AI 周刊 2026-W29</span><span class="issue-meta">2026-07-13T00:00:00+08:00 ~ 2026-07-20T00:00:00+08:00</span></a></li><li><a class="issue-row" href="/ai-weekly/issues/2026-W27.html"><span class="issue-title">AI 周刊 2026-W27</span><span class="issue-meta">2026-06-29T00:00:00+08:00 ~ 2026-07-06T00:00:00+08:00</span></a></li><li><a class="issue-row" href="/ai-weekly/issues/2026-W26.html"><span class="issue-title">AI 周刊 2026-W26</span><span class="issue-meta">2026-06-22T00:00:00+08:00 ~ 2026-06-29T00:00:00+08:00</span></a></li><li><a class="issue-row" href="/ai-weekly/issues/2026-W25.html"><span class="issue-title">AI 周刊 2026-W25</span><span class="issue-meta">2026-06-15T00:00:00+08:00 ~ 2026-06-22T00:00:00+08:00</span></a></li>
-    </ul>
+
+    <hr class="rule">
+
+    <section class="intro" aria-label="介绍">
+      <p>我们从公开信源里筛选本周值得关注的 AI 动态，整理摘要与亮点，经人工终审后发布。</p>
+      <p>不追热点噪音，只留对跟进行业真正有用的那几条。</p>
+    </section>
+
+    <section class="subscribe" aria-label="订阅">
+      <h2 class="subscribe__title">订阅 RSS，新一期自动送达</h2>
+      <p class="subscribe__desc">只需订阅下方这一个地址。之后每期发布，你的阅读器会自动收到更新。</p>
+      <div class="subscribe__url-row">
+        <code class="subscribe__url" id="rss-url">https://kdl-in.github.io/ai-weekly/feed.xml</code>
+        <div class="subscribe__actions">
+          <button type="button" class="btn" id="copy-rss">复制链接</button>
+          <a class="btn btn--ghost" href="/ai-weekly/feed.xml" target="_blank" rel="noopener">打开 Feed</a>
+        </div>
+      </div>
+      <p class="subscribe__hint">适用于 Feedly、Inoreader、NetNewsWire、Reeder，以及系统自带的「新闻 / 邮件」等任意 RSS 阅读器。</p>
+    </section>
+
+    <section class="archives" aria-label="往期周刊">
+      <div class="archives__head">
+        <h2 class="archives__title">往期周刊</h2>
+        <span class="archives__count">共 7 期</span>
+      </div>
+      <ul class="issue-list">
+        <li><a class="issue-row" href="/ai-weekly/issues/2026-W34.html"><span class="issue-title">AI 周刊 2026-W34</span><span class="issue-meta">08.17 — 08.23</span></a></li>
+        <li><a class="issue-row" href="/ai-weekly/issues/2026-W33.html"><span class="issue-title">AI 周刊 2026-W33</span><span class="issue-meta">08.10 — 08.16</span></a></li>
+        <li><a class="issue-row" href="/ai-weekly/issues/2026-W32.html"><span class="issue-title">AI 周刊 2026-W32</span><span class="issue-meta">08.03 — 08.09</span></a></li>
+        <li><a class="issue-row" href="/ai-weekly/issues/2026-W29.html"><span class="issue-title">AI 周刊 2026-W29</span><span class="issue-meta">07.13 — 07.19</span></a></li>
+        <li><a class="issue-row" href="/ai-weekly/issues/2026-W27.html"><span class="issue-title">AI 周刊 2026-W27</span><span class="issue-meta">06.29 — 07.05</span></a></li>
+        <li><a class="issue-row" href="/ai-weekly/issues/2026-W26.html"><span class="issue-title">AI 周刊 2026-W26</span><span class="issue-meta">06.22 — 06.28</span></a></li>
+        <li><a class="issue-row" href="/ai-weekly/issues/2026-W25.html"><span class="issue-title">AI 周刊 2026-W25</span><span class="issue-meta">06.15 — 06.21</span></a></li>
+      </ul>
+    </section>
+
     <footer class="footer">
-      <span>📮 <a href="/ai-weekly/feed.xml">RSS 订阅</a></span>
+      <span>订阅地址：<a href="/ai-weekly/feed.xml">feed.xml</a></span>
       <span><a href="https://github.com/KDL-in/ai-weekly">GitHub</a></span>
     </footer>
   </div>
+
+  <script>
+    (function () {
+      const url = document.getElementById('rss-url').textContent.trim();
+      const btn = document.getElementById('copy-rss');
+      const label = btn.textContent;
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(url);
+        } catch (_) {
+          const ta = document.createElement('textarea');
+          ta.value = url;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+        }
+        btn.textContent = '已复制';
+        btn.classList.add('is-copied');
+        setTimeout(() => {
+          btn.textContent = label;
+          btn.classList.remove('is-copied');
+        }, 1600);
+      });
+    })();
+  </script>
 </body>
 </html>
