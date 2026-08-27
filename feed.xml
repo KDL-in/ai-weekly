@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>AI 周报</title>
+    <link>https://kdl-in.github.io/ai-weekly/</link>
+    <description>每周 AI 领域动态精选</description>
+    <language>zh-CN</language>
+    <item>
+      <title>AI 周刊 2026-W34</title>
+      <link>https://kdl-in.github.io/ai-weekly/issues/2026-W34.html</link>
+      <guid isPermaLink="true">https://kdl-in.github.io/ai-weekly/issues/2026-W34.html</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:17 +0000</pubDate>
+      <description>AI 周刊 2026-W34（2026-08-17T00:00:00+08:00 ~ 2026-08-24T00:00:00+08:00）</description>
+    </item>
+    <item>
+      <title>AI 周刊 2026-W33</title>
+      <link>https://kdl-in.github.io/ai-weekly/issues/2026-W33.html</link>
+      <guid isPermaLink="true">https://kdl-in.github.io/ai-weekly/issues/2026-W33.html</guid>
+      <pubDate>Fri, 21 Aug 2026 08:36:28 +0000</pubDate>
+      <description>AI 周刊 2026-W33（2026-08-10T00:00:00+08:00 ~ 2026-08-17T00:00:00+08:00）</description>
+    </item>
+    <item>
+      <title>AI 周刊 2026-W32</title>
+      <link>https://kdl-in.github.io/ai-weekly/issues/2026-W32.html</link>
+      <guid isPermaLink="true">https://kdl-in.github.io/ai-weekly/issues/2026-W32.html</guid>
+      <pubDate>Tue, 11 Aug 2026 08:35:58 +0000</pubDate>
+      <description>AI 周刊 2026-W32（2026-08-03T00:00:00+08:00 ~ 2026-08-10T00:00:00+08:00）</description>
+    </item>
+    <item>
+      <title>AI 周刊 2026-W29</title>
+      <link>https://kdl-in.github.io/ai-weekly/issues/2026-W29.html</link>
+      <guid isPermaLink="true">https://kdl-in.github.io/ai-weekly/issues/2026-W29.html</guid>
+      <pubDate>Sat, 25 Jul 2026 07:57:47 +0000</pubDate>
+      <description>AI 周刊 2026-W29（2026-07-13T00:00:00+08:00 ~ 2026-07-20T00:00:00+08:00）</description>
+    </item>
+    <item>
+      <title>AI 周刊 2026-W27</title>
+      <link>https://kdl-in.github.io/ai-weekly/issues/2026-W27.html</link>
+      <guid isPermaLink="true">https://kdl-in.github.io/ai-weekly/issues/2026-W27.html</guid>
+      <pubDate>Thu, 09 Jul 2026 09:02:54 +0000</pubDate>
+      <description>AI 周刊 2026-W27（2026-06-29T00:00:00+08:00 ~ 2026-07-06T00:00:00+08:00）</description>
+    </item>
+    <item>
+      <title>AI 周刊 2026-W26</title>
+      <link>https://kdl-in.github.io/ai-weekly/issues/2026-W26.html</link>
+      <guid isPermaLink="true">https://kdl-in.github.io/ai-weekly/issues/2026-W26.html</guid>
+      <pubDate>Mon, 29 Jun 2026 12:07:26 +0000</pubDate>
+      <description>AI 周刊 2026-W26（2026-06-22T00:00:00+08:00 ~ 2026-06-29T00:00:00+08:00）</description>
+    </item>
+    <item>
+      <title>AI 周刊 2026-W25</title>
+      <link>https://kdl-in.github.io/ai-weekly/issues/2026-W25.html</link>
+      <guid isPermaLink="true">https://kdl-in.github.io/ai-weekly/issues/2026-W25.html</guid>
+      <pubDate>Fri, 26 Jun 2026 07:27:17 +0000</pubDate>
+      <description>AI 周刊 2026-W25（2026-06-15T00:00:00+08:00 ~ 2026-06-22T00:00:00+08:00）</description>
+    </item>
+  </channel>
+</rss>

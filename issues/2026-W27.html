@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 周刊 2026-W27</title>
+  <style>
+:root {
+  --bg-page: #faf9f6;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-body: #333333;
+  --text-muted: #888888;
+  --border-strong: #1a1a1a;
+  --border-subtle: #e5e5e0;
+  --accent-red: #c53030;
+  --accent-red-bg: #fff5f5;
+  --accent-insight: #5a9ba5;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'PingFang SC', Inter, system-ui, sans-serif;
+  line-height: 1.5;
+  color: var(--text-body);
+  background: var(--bg-page);
+}
+a { color: var(--accent-insight); }
+.layout {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+h1, h2, h3 {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  color: var(--text-primary);
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--accent-red);
+}
+.card--readonly { border-left-color: var(--accent-insight); }
+.badge {
+  font-size: 0.75rem;
+  background: var(--accent-red-bg);
+  color: var(--accent-red);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.insight {
+  border-left: 3px solid var(--accent-insight);
+  padding-left: 1rem;
+  margin: 1rem 0;
+}
+.insight-label {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--accent-insight);
+}
+.meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.75rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.card-head h3 {
+  margin: 0;
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: inherit;
+  font-weight: inherit;
+}
+.card-summary { margin-top: 0.75rem; line-height: 1.6; }
+.source-type-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.source-type-icon__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 6px;
+}
+.source-type-icon--rss .source-type-icon__glyph { background: #fff4e6; color: #c05621; }
+.source-type-icon--youtube .source-type-icon__glyph { background: #fff5f5; color: #c53030; }
+.source-type-icon--unknown .source-type-icon__glyph { background: #f0f4f8; color: var(--text-muted); }
+.item-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+.item-title__zh {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.45;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.item-title__en {
+  font-family: Inter, 'PingFang SC', system-ui, sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.item-title--single {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.45;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.review-page__toolbar { margin-bottom: 0.5rem; }
+.review-view-toggle {
+  display: inline-flex;
+  margin: 0.75rem 0 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+.review-view-toggle__btn {
+  padding: 0.4rem 0.9rem;
+  border: none;
+  background: transparent;
+  font-family: Inter, 'PingFang SC', system-ui, sans-serif;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.review-view-toggle__btn + .review-view-toggle__btn {
+  border-left: 1px solid var(--border-strong);
+}
+.review-view-toggle__btn.is-active {
+  background: var(--text-primary);
+  color: #fff;
+  font-weight: 500;
+}
+.review-view-toggle__btn:hover:not(.is-active) { background: #ebebea; }
+.issue-masthead {
+  text-align: center;
+  padding: 1.25rem 0 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 0;
+}
+.issue-masthead__label {
+  margin: 0;
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.issue-masthead__range {
+  margin: 0.35rem 0 0;
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
+.category-nav-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-strong);
+  background: #f5f5f3;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+}
+.category-nav {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.category-nav--scroll { flex-wrap: nowrap; }
+.category-nav__item {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.85rem;
+  border: none;
+  background: transparent;
+  font-family: Inter, 'PingFang SC', system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-body);
+  cursor: pointer;
+  white-space: nowrap;
+  border-right: 1px solid var(--border-subtle);
+}
+.category-nav__item:last-of-type { border-right: none; }
+.category-nav__item:hover { color: var(--text-primary); }
+.category-nav__item.is-active {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.category-nav__label {
+  max-width: 12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.category-nav__count {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.category-nav-select {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+.category-nav-select select {
+  width: auto;
+  min-width: 8rem;
+  max-width: 14rem;
+  font-size: 0.8125rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  font: inherit;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.review-section { margin-bottom: 2rem; }
+.review-section__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.25rem 0 0.5rem;
+}
+.review-section__title {
+  margin: 0;
+  font-family: Inter, 'PingFang SC', system-ui, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.review-section__count {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.review-section__rule {
+  height: 1px;
+  background: var(--border-strong);
+  margin-bottom: 0.75rem;
+}
+.empty {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 2rem;
+}
+
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 0;
+  font-size: 0.875rem;
+}
+.site-nav a { color: var(--text-muted); text-decoration: none; }
+.site-nav a:hover { color: var(--accent-insight); }
+.site-nav__brand {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+.site-nav__links { display: flex; gap: 1rem; }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a class="site-nav__brand" href="/ai-weekly/">AI 周报</a>
+  <div class="site-nav__links">
+    <a href="/ai-weekly/">全部期次</a>
+    <a href="/ai-weekly/feed.xml">RSS</a>
+  </div>
+</nav>
+
+  <div class="layout review-page" id="app"></div>
+  <script>window.__ISSUE_DATA__ = {"week_label": "2026-W27", "since": "2026-06-29T00:00:00+08:00", "until": "2026-07-06T00:00:00+08:00", "items": [{"id": 144, "category": "观点与评论", "title_zh": "萨提亚·纳德拉谈下一代伟大初创企业", "summary": "微软CEO萨提亚·纳德拉认为，下一个伟大的创业公司可能不是应用或模型，而是一所新型大学或一种全新的教学方法。他以Alpha School为例，指出其利用人工智能课程，确保学生真正掌握如softmax等核心概念，而非仅仅依赖AI修复训练错误。纳德拉强调，当前教育体系在激励机制、资格认证标准及社会对学历的看法上都需要彻底改变，以创造具有巨大经济价值的学习机会。", "highlights": ["下一个伟大创业可能是新型大学或教学方法", "以Alpha School为例，强调AI教育应注重概念理解而非工具依赖", "呼吁彻底改革教育的激励机制与资格认证体系"], "badge": null, "title": "Satya Nadella on the next great startup", "url": "https://www.youtube.com/shorts/Crqac-Mlgsk", "author": "No Priors: AI, Machine Learning, Tech, & Startups", "published_at": "2026-07-08T23:27:25", "source_name": "No Priors: AI, Machine Learning, Tech, & Startups", "source_type": "youtube"}, {"id": 145, "category": "观点与评论", "title_zh": "引用 Kenton Varda 的观点", "summary": "Kenton Varda 宣布其团队暂停使用 AI 撰写代码变更描述（如 PR、提交信息和工单）。他发现 AI 生成的描述在代码审查时比无用更糟：它们会详细列出从代码本身就能轻易看出的细节，却遗漏了理解代码整体意图所需的高层次框架。这一观点指出了当前 AI 辅助编程在上下文理解和意图概括方面的局限性，强调了人类在提供战略性、高层次沟通中的不可替代性。", "highlights": ["团队暂停使用 AI 撰写 PR 和提交信息等变更描述", "AI 描述只罗列代码可见细节，缺失高层次意图框架", "指出 AI 在代码审查沟通中的关键短板"], "badge": null, "title": "Quoting Kenton Varda", "url": "https://simonwillison.net/2026/Jul/8/kenton-varda/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-08T20:03:34", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 146, "category": "模型与能力", "title_zh": "GPT‑Live 正式发布", "summary": "Simon Willison 介绍了 OpenAI 为 ChatGPT 语音模式升级的新模型 GPT‑Live。他在 iPhone 应用上进行了数周预览，认为新模型令人印象深刻。GPT‑Live 具备将复杂任务（如网页搜索、深度推理）委托给后台的 GPT-5.5 处理，并在结果就绪后无缝带回对话的能力，期间可保持对话流畅。此前基于 GPT-4o 的旧语音模式因模型能力较弱，已很少被作者用作头脑风暴伙伴。预览期间作者遇到一个罕见 bug：模型会不合时宜地打断并嘲笑用户，经反馈后已得到调整。作者最长的一次对话是在遛狗时持续了一小时。", "highlights": ["ChatGPT 语音模式底层模型升级为 GPT‑Live，能力大幅提升", "支持将复杂任务委托给后台的 GPT-5.5 处理，并保持对话不中断", "作者分享了预览体验，包括一个模型不合时宜发笑的罕见 bug 及修复"], "badge": null, "title": "Introducing GPT‑Live", "url": "https://simonwillison.net/2026/Jul/8/introducing-gptlive/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-08T23:20:48", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 147, "category": "工程与实践", "title_zh": "用 Rust 重写 Bun", "summary": "本文详细介绍了 Bun 运行时从 Zig 语言向 Rust 语言重写的工程实践。作者 Jarred Sumner 解释了重写的主要动机是解决 Zig 中手动内存管理与垃圾回收混合带来的内存安全 bug（如 use-after-free）。重写的关键使能因素是 Bun 的 TypeScript 测试套件，它作为一致性套件，配合基于前沿大模型（如 Claude/Mythos）的编码智能体，自动化完成了大量初始移植工作。文章探讨了如何通过自动化工作流、对抗性代码审查和流程修复来审查并合并超百万行代码的 PR。新 Rust 版本已在 Claude Code 中稳定运行近一个月，启动速度提升 10%，整体表现平稳。整个项目消耗了约 59 亿输入 token，API 成本估计为 16.5 万美元，是智能体辅助完成大规模软件重写的典型案例。", "highlights": ["利用 TypeScript 测试套件作为一致性套件，驱动智能体自动完成从 Zig 到 Rust 的代码移植", "通过对抗性代码审查和修复生成代码的流程，而非手动修改代码，来审查超百万行的 PR", "整个重写过程消耗约 59 亿输入 token，API 成本估计达 16.5 万美元，展示了智能体工程的巨大潜力与成本"], "badge": null, "title": "Rewriting Bun in Rust", "url": "https://simonwillison.net/2026/Jul/8/rewriting-bun-in-rust/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-08T23:57:21", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 148, "category": "模型与能力", "title_zh": "在编码评估中分离信号与噪声", "summary": "OpenAI 发布新分析，指出流行的编码基准测试 SWE-Bench Pro 存在可靠性问题。该分析揭示了评估方法中的缺陷，可能导致对 AI 模型编码能力的评估结果不够准确。研究强调了在衡量模型性能时，需要更严谨地分离有效信号与评估噪声，以确保基准测试能够真实反映模型的实际编程水平。", "highlights": ["OpenAI 对流行编码基准 SWE-Bench Pro 提出质疑", "分析揭示了评估方法中存在的可靠性和准确性问题", "强调需在 AI 编码能力评估中分离有效信号与噪声"], "badge": null, "title": "Separating signal from noise in coding evaluations", "url": "https://openai.com/index/separating-signal-from-noise-coding-evaluations", "author": "OpenAI Blog", "published_at": "2026-07-08T13:00:00", "source_name": "OpenAI Blog", "source_type": "rss"}, {"id": 149, "category": "产品与工具", "title_zh": "帮助K–12教育者掌握实用AI技能", "summary": "OpenAI学院与沃尔顿家族基金会合作，推出面向K-12教育工作者的AI技能实践工作坊（AI Skills Jams）。该项目旨在通过动手实践的方式，帮助中小学教师掌握可在课堂教学中应用的人工智能实用技能，从而提升其数字素养和教学创新能力。", "highlights": ["OpenAI与沃尔顿家族基金会合作开展教育者培训项目", "采用动手实践的工作坊形式（AI Skills Jams）", "专注于提升K-12教师的课堂AI应用技能"], "badge": null, "title": "Helping K–12 educators build practical AI skills", "url": "https://openai.com/index/k-12-educators-practical-skills", "author": "OpenAI Blog", "published_at": "2026-07-08T10:00:00", "source_name": "OpenAI Blog", "source_type": "rss"}, {"id": 150, "category": "行业与政策", "title_zh": "我们与政府及国家安全领域的合作方式", "summary": "OpenAI在其官方博客中阐述了与政府及国家安全机构合作的原则与方法。文章强调，在确保负责任地使用人工智能、维护民主问责制和保障公共安全的前提下，OpenAI致力于与政府建立伙伴关系。其核心原则包括：遵守法律并捍卫人权，防止AI被用于恶意目的，以及通过合作促进全球安全与稳定。文章旨在公开透明地说明OpenAI如何平衡技术创新与国家安全需求，确保其技术发展符合民主价值观并服务于公共利益。", "highlights": ["公开阐述与政府及国家安全机构合作的核心原则", "强调负责任AI使用、民主问责制和公共安全三大支柱", "表明在遵守法律和人权前提下寻求合作，防止技术滥用"], "badge": null, "title": "Our approach to government and national security partnerships", "url": "https://openai.com/index/government-national-security-partnerships", "author": "OpenAI Blog", "published_at": "2026-07-08T13:30:00", "source_name": "OpenAI Blog", "source_type": "rss"}, {"id": 151, "category": "模型与能力", "title_zh": "推出 GPT-Live：新一代语音模型，赋能 ChatGPT 语音交互", "summary": "OpenAI 正式发布 GPT-Live，这是一套新一代语音模型，旨在实现更自然的人机语音交互。该模型现已集成至 ChatGPT Voice 功能中，有望显著提升对话的流畅度、自然度和响应速度，为用户带来更接近真人对话的体验。此更新标志着 OpenAI 在多模态交互领域迈出了重要一步。", "highlights": ["发布新一代语音模型 GPT-Live，专为自然交互设计", "模型已直接集成并驱动 ChatGPT Voice 功能", "旨在提升语音对话的流畅度与自然度"], "badge": null, "title": "Introducing GPT-Live", "url": "https://openai.com/index/introducing-gpt-live", "author": "OpenAI Blog", "published_at": "2026-07-08T00:00:00", "source_name": "OpenAI Blog", "source_type": "rss"}, {"id": 152, "category": "产品与工具", "title_zh": "澳大利亚支付平台借助ChatGPT与Codex加速发展", "summary": "本文介绍了澳大利亚支付平台Australian Payments Plus（AP+）如何利用ChatGPT Enterprise和Codex来应对支付领域的复杂性，从而提升工作效率。通过应用这些AI工具，AP+在节省时间、提高工作质量的同时，始终坚持将人类判断置于核心地位，展示了人工智能在金融支付行业中的实际应用价值。", "highlights": ["展示了ChatGPT Enterprise和Codex在金融支付领域的实际应用案例", "强调AI工具在节省时间和提升质量方面的具体成效", "突出人类判断在AI辅助工作流程中的核心地位"], "badge": null, "title": "Australian Payments Plus moves faster with ChatGPT and Codex", "url": "https://openai.com/index/australian-payments-plus", "author": "OpenAI Blog", "published_at": "2026-07-07T00:00:00", "source_name": "OpenAI Blog", "source_type": "rss"}, {"id": 153, "category": "产品与工具", "title_zh": "GitHub 代码嵌入 Web 组件", "summary": "Simon Willison 发布了一个实验性 Web 组件，用于在网页中嵌入 GitHub 上的代码片段。该组件由 GPT-5.5 根据提示词生成，通过将 GitHub 文件链接转换为 raw 原始内容链接，利用 fetch() 获取代码，并显示指定行号范围的代码，附带行号但不包含语法高亮。文章展示了该组件在页面中的实际嵌入效果。", "highlights": ["由 GPT-5.5 根据提示词生成的实验性 Web 组件", "支持通过 GitHub 链接嵌入指定行范围的代码片段", "自动转换链接并获取原始代码，显示行号"], "badge": null, "title": "github-code Web Component", "url": "https://simonwillison.net/2026/Jul/7/github-code-component/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-07T16:18:16", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 154, "category": "产品与工具", "title_zh": "TPG 如何借助 ChatGPT 加速投资研究", "summary": "全球另类资产管理公司TPG分享了其团队在日常投资研究中应用ChatGPT的经验。团队每天使用ChatGPT进行市场研究和桌面信息搜集，从而能够极快地熟悉和掌握行业动态。特别地，ChatGPT的Excel插件被视为一项变革性工具，它不仅能节省时间，还能实时提供关于投资组合公司更具诊断性的信息，并帮助节省成本。这体现了AI工具在提升投资研究效率和决策质量方面的实际价值。", "highlights": ["TPG团队每日使用ChatGPT进行市场研究与信息搜集，以快速掌握行业知识。", "ChatGPT的Excel插件被强调为变革性工具，可实时分析投资组合公司数据。", "应用ChatGPT不仅节省了时间，还降低了成本。"], "badge": null, "title": "How TPG Is Accelerating Investment Research with ChatGPT", "url": "https://www.youtube.com/shorts/mC8nKdQbbO4", "author": "OpenAI", "published_at": "2026-07-07T17:33:50", "source_name": "OpenAI", "source_type": "youtube"}, {"id": 155, "category": "行业与政策", "title_zh": "三菱日联金融集团携手OpenAI打造AI原生组织", "summary": "日本最大的金融机构三菱日联金融集团（MUFG）宣布与OpenAI合作，通过部署ChatGPT Enterprise，全面推进其成为“AI原生”组织的战略。该合作旨在利用生成式AI技术大规模优化内部工作流程，提升运营效率，并开发全新的AI驱动型金融服务。此举标志着传统金融巨头在数字化转型中迈出关键一步，将AI深度整合至核心业务，以期在客户服务、风险管理和产品创新等领域实现突破性变革。", "highlights": ["日本最大金融机构MUFG宣布与OpenAI合作，目标成为AI原生组织", "大规模部署ChatGPT Enterprise以优化内部工作流和提升效率", "计划开发并交付全新的AI驱动型金融服务"], "badge": null, "title": "MUFG aims to become AI-native with OpenAI", "url": "https://openai.com/index/mufg", "author": "OpenAI Blog", "published_at": "2026-07-07T00:00:00", "source_name": "OpenAI Blog", "source_type": "rss"}, {"id": 156, "category": "模型与能力", "title_zh": "腾讯混元3D生成模型", "summary": "腾讯发布Hy3模型，这是一个拥有2950亿总参数的混合专家（MoE）模型，其中活跃参数210亿，MTP层参数38亿。该模型基于Hy3预览版的反馈，使用更高质量的数据进行了大规模后训练，性能超越了同尺寸模型，并能与参数规模2-5倍的旗舰开源模型相媲美。模型上下文长度为256K，完整版大小598GB，FP8量化版300GB。目前在OpenRouter上可免费使用至7月21日。", "highlights": ["295B总参数的MoE架构，仅21B活跃参数，推理效率高", "性能对标参数规模2-5倍的旗舰开源模型", "提供完整版和FP8量化版，并在OpenRouter限时免费"], "badge": null, "title": "tencent/Hy3", "url": "https://simonwillison.net/2026/Jul/6/hy3/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-06T23:57:35", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 157, "category": "产品与工具", "title_zh": "sqlite-utils 4.0rc3 发布", "summary": "Simon Willison 发布了 sqlite-utils 4.0rc3 候选版本。原计划发布 4.0 稳定版，但在借助 Claude Fable 5 和 GPT-5.5 处理积压的问题和 PR 后，更新日志不断扩充。此版本最大的新功能是支持内省和创建复合外键，该功能对 table.foreign_keys 有细微的破坏性变更，因此必须在 4.0 稳定版中落地。此外，sqlite-utils 现在遵循 SQLite 的大小写不敏感列名约定，这一改动同时影响了代码库中的多个部分。", "highlights": ["发布 4.0rc3 候选版，为 4.0 稳定版做最后准备", "新增复合外键的内省与创建支持，涉及破坏性变更", "遵循 SQLite 大小写不敏感列名约定，影响多处代码"], "badge": null, "title": "sqlite-utils 4.0rc3", "url": "https://simonwillison.net/2026/Jul/6/sqlite-utils/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-06T05:40:08", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 158, "category": "观点与评论", "title_zh": "从零开始玩转循环", "summary": "文章指出，当前AI领域热议的“设计循环”概念，并非简单地给AI智能体下指令，但其定义在社交媒体上众说纷纭。作者旨在澄清这一概念，引导读者从零开始理解循环在AI开发中的真正含义，强调其作为一种结构化、迭代式的工作流设计方法，区别于传统的线性提示工程。文章为入门者提供了理解这一新兴范式的起点。", "highlights": ["澄清了“设计循环”与简单提示词的区别", "指出社交媒体上对“循环”定义的混乱现状", "定位为从零开始的入门引导性内容"], "badge": null, "title": "从零开始玩转循环 (Getting started with loops)", "url": "https://baoyu.io/blog/2026-07-06/claudedevs-2074208949205881033", "author": "宝玉", "published_at": "2026-07-06T00:00:00", "source_name": "宝玉", "source_type": "rss"}, {"id": 159, "category": "产品与工具", "title_zh": "sqlite-utils 4.0rc2 发布", "summary": "Simon Willison 发布了 sqlite-utils 4.0rc2 版本，这是一个用于操作 SQLite 数据库的命令行工具和 Python 库。该版本主要由 AI 助手 Claude Fable 编写，开发成本约为 149.25 美元。", "highlights": ["发布 sqlite-utils 4.0rc2 候选版本", "代码主要由 AI 助手 Claude Fable 完成", "开发成本约 149.25 美元"], "badge": null, "title": "sqlite-utils 4.0rc2", "url": "https://simonwillison.net/2026/Jul/5/sqlite-utils/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-05T00:47:38", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 160, "category": "产品与工具", "title_zh": "Codex 如何学会视频编辑", "summary": "OpenAI 的 Codex 模型在早期测试中展现出了意想不到的视频编辑能力。一位内部摄像师出于好奇，尝试让 Codex 编辑视频。尽管 Codex 本身并非视频编辑器，也没有相关界面，但它识别出用户正在使用 Adobe Premiere Pro，并自主构建了一个可安装的 Premiere Pro 扩展程序。通过该扩展，Codex 能够与 Premiere Pro 通信，并直接操控软件内的标记等元素，完成视频编辑任务。这一过程展示了 AI 代理主动理解用户意图、生成工具并执行复杂操作的可能性，令开发团队感到震惊。", "highlights": ["Codex 自主识别用户使用的 Premiere Pro 软件并构建扩展程序", "AI 通过生成扩展与专业软件通信，直接操控应用内元素", "展示了 AI 从被动问答到主动执行复杂工具操作的能力跃迁"], "badge": null, "title": "How Codex learnt to edit videos", "url": "https://www.youtube.com/shorts/MBQLYAWhlO4", "author": "Lenny's Podcast", "published_at": "2026-07-05T11:00:31", "source_name": "Lenny's Podcast", "source_type": "youtube"}, {"id": 161, "category": "工程与实践", "title_zh": "sqlite-utils 4.0rc2：由Claude Fable辅助完成，成本约149.25美元", "summary": "Simon Willison 分享了使用 AI 编程助手 Claude Fable 完成 sqlite-utils 4.0 候选版本发布前最终审查与修复的经历。在 Claude Max 订阅即将到期前，他通过 37 次提示、34 次提交，修复了包括可能导致数据丢失的严重事务处理 bug 在内的多个问题。他还利用 GPT-5.5 对代码进行交叉审查，发现了新的边缘情况。整个过程估算成本为 149.25 美元，Simon 认为这体现了 AI 辅助编程在复杂任务中的价值，并分享了通过审查文档来理解代码变更、利用不同模型交叉审查等实践经验。", "highlights": ["Claude Fable 发现并修复了 delete_where() 方法因事务处理不当导致数据丢失的严重 bug", "展示了使用 GPT-5.5 对 Claude 生成的代码进行交叉审查，并成功发现新问题的实践", "详细记录了 AI 辅助编程的成本（约149.25美元）与过程，包括在移动端远程指导 AI 工作"], "badge": null, "title": "sqlite-utils 4.0rc2, mostly written by Claude Fable (for about $149.25)", "url": "https://simonwillison.net/2026/Jul/5/sqlite-utils-fable/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-05T01:00:48", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 162, "category": "观点与评论", "title_zh": "模型更强，工具更糟", "summary": "本文探讨了一个反常现象：Anthropic 最新的顶尖模型（如 Opus 4.8 和 Sonnet 5）在调用第三方编程工具 Pi 的自定义编辑工具时，比旧版模型更容易出错。具体表现为模型会在工具调用参数中编造不存在的字段，导致调用被拒绝。作者 Armin 推测，这是因为新模型通过强化学习专门针对 Claude Code 内置的编辑工具进行了优化，反而削弱了它们遵循其他工具自定义 Schema 的能力。这引发了一个问题：第三方编程工具是否需要为不同模型实现多种编辑工具，以适配其各自的优化方向。", "highlights": ["揭示模型能力与工具遵循性之间的反常退化现象", "分析模型针对特定工具优化可能带来的泛化能力下降问题", "提出第三方工具需适配不同模型专属工具接口的潜在挑战"], "badge": null, "title": "Better Models: Worse Tools", "url": "https://simonwillison.net/2026/Jul/4/better-models-worse-tools/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-04T22:53:52", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 163, "category": "观点与评论", "title_zh": "肉毒杆菌会削弱你的情绪解读能力", "summary": "这段对话探讨了具身认知与心智理论的关系。嘉宾以肉毒杆菌实验为例，指出注射后面部肌肉僵硬的人识别他人情绪的能力会下降，因为理解情绪部分依赖于无意识的模仿与亲身体验。由此引申到对AI的讨论：当前语言模型虽能通过文本学习大量知识，但因缺乏物理身体和面部肌肉，无法像人类一样通过模仿来“设身处地”地理解情感，其心智理论可能更像一种基于数据的模式匹配，而非真正的涌现体验。", "highlights": ["肉毒杆菌实验：面部肌肉冻结会损害情绪识别能力", "具身认知观点：理解情绪依赖于无意识的模仿与亲身体验", "AI的局限：缺乏物理身体，其心智理论可能仅为模式匹配"], "badge": null, "title": "Botox Makes You Worse at Reading Emotions - Grant Sanderson", "url": "https://www.youtube.com/shorts/Gr5cOV3mOGs", "author": "Dwarkesh Patel", "published_at": "2026-07-04T18:20:07", "source_name": "Dwarkesh Patel", "source_type": "youtube"}, {"id": 164, "category": "产品与工具", "title_zh": "开源AI差距地图", "summary": "非营利组织Current AI发布了“差距地图”（Gap Map）v0.1版本，旨在索引开源AI的现状。该地图深入收录了421个产品，涵盖266个软件工具与库、85个模型、50个数据集和20个硬件项目，由228个组织开发。这些产品被组织为14个类别，分布在模型组件、产品/用户体验和基础设施三个技术栈层级。此外，还有24400个未分类的生态项目。所有底层数据以MIT许可证在GitHub上发布，包含1184个YAML文件及相关脚本。作者Simon Willison认为底层数据比地图本身更令人兴奋，并展示了如何用Datasette Lite直接探索这些数据。", "highlights": ["Current AI发布开源AI生态索引“差距地图”，收录421个深度分析产品", "底层数据以MIT许可证在GitHub开放，包含1184个YAML文件", "作者利用Datasette Lite工具直接在线探索和查询项目追踪的16185个GitHub仓库"], "badge": null, "title": "Open Source AI Gap Map", "url": "https://simonwillison.net/2026/Jul/3/open-source-ai-gap-map/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-03T22:04:31", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 165, "category": "观点与评论", "title_zh": "数学家将成为艺术策展人——格兰特·桑德森", "summary": "Grant Sanderson（3Blue1Brown创始人）在与Dwarkesh Patel的对话中提出，未来数学家的角色将类似于艺术策展人。他认为，当人工智能能够生成近乎无限的数学内容时，人类数学家的核心价值不再是创造，而是帮助人们在浩瀚的想法空间中导航，辨别哪些思想值得深入参与。这种策展工作基于人类的社会属性，人们对事物的兴趣驱动力是一种社会现象，因此会更倾向于与建立关系的人类互动。Sanderson指出，他目前视频制作的大部分时间并非花在视觉效果上，而是用于判断什么内容值得讲述和展示，这正是一种策展行为。他类比音乐领域，即使AI生成的音乐在客观上更优，人类音乐家仍因其社会功能而存在，数学领域也将面临同样的情况。", "highlights": ["提出未来数学家角色将转变为'艺术策展人'，核心工作是筛选和引导值得关注的思想。", "强调人类对知识的兴趣是社会现象，因此人们会更信任人类策展者而非AI。", "以自身视频制作为例，指出大部分精力用于内容筛选而非技术实现，印证了策展角色的现实性。"], "badge": null, "title": "Mathematicians will become art curators - Grant Sanderson", "url": "https://www.youtube.com/shorts/Cn12N7Vm32A", "author": "Dwarkesh Patel", "published_at": "2026-07-03T22:31:30", "source_name": "Dwarkesh Patel", "source_type": "youtube"}, {"id": 166, "category": "观点与评论", "title_zh": "引用 Josh W. Comeau 的观点", "summary": "前端开发者及课程作者Josh W. Comeau分享了他新课程发布后销量大幅下滑的现象，并指出这并非个例，其他课程创作者也面临收入下降50%以上的困境。他认为主要原因是AI的冲击：一方面，人们对开发者职业前景感到迷茫，不愿投资学习新技能；另一方面，大语言模型能提供个性化辅导，降低了购买付费课程的意愿。此外，他还批评了AI模型未经同意或补偿就吸收并复述创作者成果的问题。", "highlights": ["课程创作者普遍遭遇收入下降超50%的困境", "AI引发职业焦虑导致学习投资意愿降低", "LLM的个性化辅导能力冲击了付费课程市场"], "badge": null, "title": "Quoting Josh W. Comeau", "url": "https://simonwillison.net/2026/Jul/3/josh-w-comeau/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-03T21:25:52", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 167, "category": "工程与实践", "title_zh": "寓言裁决", "summary": "Simon Willison 分享了从 Claude Code 团队获得的实用技巧：让 Fable（以及 Opus）模型自行判断如何工作，而非下达具体指令。例如在测试方面，与其规定“仅对大型功能进行自动化测试”，不如让模型自行判断何时编写测试。另一个技巧是让 Fable 自行决定将较小的编码任务委派给更低功耗的模型（如 Sonnet 或 Haiku）作为子代理执行，以节省成本。Simon 通过在 Claude Code 中下达指令，成功让系统保存了相关记忆文件，实现了任务自动委派。实践表明，这种方法在保持工作效率的同时，有效减缓了 Fable 额度消耗速度。", "highlights": ["让 Fable 模型自行判断工作方式比下达具体指令更有效", "通过子代理机制将编码任务委派给低功耗模型以节省成本", "实践验证该方法在保持效率的同时显著降低 Fable 额度消耗"], "badge": null, "title": "Fable's judgement", "url": "https://simonwillison.net/2026/Jul/3/judgement/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-03T18:51:06", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 168, "category": "观点与评论", "title_zh": "2026年6月简报", "summary": "这是Simon Willison发布的2026年6月付费订阅者月刊摘要。本期内容涵盖多个AI领域最新动态，包括Claude Fable 5和GPT-5.6等前沿模型发布、美国对GLM-5.2的出口限制、开源模型GLM-5.2成为新的最佳开放权重模型，以及关于“Tokenmaxxing”趋势的评论。此外还涉及Datasette Apps、sqlite-utils等工具更新、WASM项目进展及其他模型发布。作者还分享了自己当前使用的工具。该月刊为付费内容，需赞助10美元/月获取完整版。", "highlights": ["涵盖Claude Fable 5和GPT-5.6等最新模型动态", "讨论美国对GLM-5.2的出口限制及开源模型进展", "分享Datasette工具生态和WASM项目更新"], "badge": null, "title": "June 2026 newsletter", "url": "https://simonwillison.net/2026/Jul/3/june-newsletter/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-03T14:50:50", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 169, "category": "产品与工具", "title_zh": "英伟达AI芯片现由核能驱动", "summary": "Valar Atomics公司创始人Isaiah Taylor宣布，他们已将英伟达Blackwell AI芯片直接连接到核反应堆上运行，声称这是首个由核能驱动的AI芯片。该芯片目前用于托管一个网站（nuclearwebsite.com），访问该网站时，页面会显示为提供此次浏览服务而分裂的铀原子数量。此外，该公司的周边商品也只能通过这个由核反应堆驱动的网站购买。这一项目展示了将小型核反应堆直接用于AI计算基础设施的早期实践。", "highlights": ["首次将英伟达Blackwell AI芯片直接连接到核反应堆供电并运行。", "网站nuclearwebsite.com由该核能AI芯片托管，并实时显示消耗的铀原子分裂数。", "公司周边商品仅限通过该核能驱动的网站购买，形成独特的营销闭环。"], "badge": null, "title": "NVIDIA's AI Chip Is Now Running on Nuclear Power", "url": "https://www.youtube.com/shorts/F23u22awHjo", "author": "No Priors: AI, Machine Learning, Tech, & Startups", "published_at": "2026-07-03T10:55:52", "source_name": "No Priors: AI, Machine Learning, Tech, & Startups", "source_type": "youtube"}, {"id": 170, "category": "观点与评论", "title_zh": "产品岗位为何需要保持稳定", "summary": "视频批评了当前一些公司因AI工具兴起而考虑取消产品经理职位的趋势。核心观点认为，这种做法危险地忽视了产品开发是一个拥有专业知识和最佳实践的专业领域。产品管理不仅仅是人际互动，它包含了一套经过验证的流程、方法和失败教训，不能简单地因为工程师能编写代码就被取代。每个学科都有其独特的技能组合，并非所有人都能胜任所有工作，就像会使用Excel不等于能胜任财务工作一样。因此，保留产品经理这一专业角色至关重要。", "highlights": ["尖锐批评了用AI或开发人员取代产品经理的行业趋势，称其为“糟糕的想法”。", "强调产品开发是拥有最佳实践、失败经验和专业流程的独立学科，不应被轻视。", "通过类比（会Excel不等于能做财务）指出，工程技能不能替代产品管理的专业技能。"], "badge": null, "title": "Why product roles need to stay", "url": "https://www.youtube.com/shorts/fciOhYZOZuo", "author": "Lenny's Podcast", "published_at": "2026-07-03T14:00:06", "source_name": "Lenny's Podcast", "source_type": "youtube"}, {"id": 171, "category": "观点与评论", "title_zh": null, "summary": "本期周刊以一篇名为《我在智念 AI 的日子》的超短篇小说为核心，通过一名员工的视角，讽刺了过度依赖AI的科技公司文化。小说描绘了员工用AI生成一切工作内容，从代码、文档到幻灯片，却无人理解其含义，最终导致系统故障的荒诞景象。周刊还收录了关于驯化浣熊、远程工作聚会、AI生成虚假商品图片等科技动态，以及多篇技术文章、工具推荐和AI相关项目。文摘部分探讨了如何判断是否该离开一家公司，并附有多条引人深思的言论。", "highlights": ["核心小说《我在智念 AI 的日子》以黑色幽默手法，深刻讽刺了AI时代下，科技从业者可能面临的创造力丧失与工作意义空洞化的困境。", "通过老张、周蔚蓝等角色，生动刻画了从代码到汇报全面AI化后，个体对工作内容失去理解和控制的普遍现象。", "文摘部分提供了判断是否应该离职的八个自省问题，为对当前工作产生怀疑的读者提供了实用的决策参考。"], "badge": null, "title": "科技爱好者周刊（第 402 期）：我在智念 AI 的日子（小说）", "url": "http://www.ruanyifeng.com/blog/2026/07/weekly-issue-402.html", "author": "阮一峰的网络日志", "published_at": "2026-07-02T23:33:49", "source_name": "阮一峰的网络日志", "source_type": "rss"}, {"id": 172, "category": "产品与工具", "title_zh": "LLM 编程代理 0.1a0", "summary": "Simon Willison 发布了 llm-coding-agent 0.1a0，这是一个基于其 LLM 库构建的简单编码代理。该工具实现了类似 Claude Code 风格的编码代理，具备读取、编辑文件及执行命令等工具。项目通过编写规范文档和红绿测试驱动开发（TDD）方式构建，已发布到 PyPI。用户可通过 `uvx` 命令运行，支持 `--yolo` 等模式。工具集包括精确编辑文件、执行 shell 命令、列出文件、读取文件、搜索文件内容和写入文件等功能。作者使用 GPT-5.5 测试了创建一个 SwiftUI ASCII 艺术时钟应用的任务，代理成功生成了可运行的代码。", "highlights": ["基于 LLM 库构建的轻量级编码代理，提供类似 Claude Code 的体验", "采用规范驱动和 TDD 方式开发，代码提交序列清晰可追溯", "内置丰富的文件操作与命令执行工具，支持 `--yolo` 等快捷模式"], "badge": null, "title": "llm-coding-agent 0.1a0", "url": "https://simonwillison.net/2026/Jul/2/llm-coding-agent/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-02T19:33:12", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 173, "category": "工程与实践", "title_zh": "使用 DSPy 评估并改进 Datasette Agent 的 SQL 系统提示", "summary": "Simon Willison 受 AIE 主题演讲启发，尝试使用 DSPy 框架来评估和优化其开源工具 Datasette Agent 的系统提示。Datasette Agent 能通过执行只读 SQL 查询来回答用户的数据问题。他利用 Claude Code 发起异步研究任务，使用 GPT-4.1 mini 和 nano 模型进行测试，并发现了若干改进方向。其中一项关键发现是：当前提示仅列出表名，并建议“若已有信息则不要调用 describe_table”，这导致模型猜测列名并陷入错误重试循环。改进方案包括在提示中直接包含列名或软化该建议。", "highlights": ["利用 DSPy 框架系统化优化 AI Agent 的 SQL 生成提示词", "发现提示词中缺失列信息会导致模型猜测列名并引发错误循环", "展示了通过自动化评估迭代改进 LLM 应用提示工程的实践方法"], "badge": null, "title": "Using DSPy to evaluate and improve Datasette Agent's SQL system prompts", "url": "https://simonwillison.net/2026/Jul/2/dspy-datasette-agent-prompts/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-02T18:25:00", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 174, "category": "观点与评论", "title_zh": "为什么AI在设计领域表现不佳？", "summary": "视频探讨了当前AI在设计领域表现不佳的原因。主讲人指出，AI生成的网站设计往往只是对现有优秀作品（如Linear网站）的模仿，缺乏真正的创新。核心问题在于，软件工程追求对已知模式的复用，而设计则需要随机性和新颖性。此外，AI难以理解设计中的深层抽象概念，例如在品牌重塑时，不仅要更新数百个组件的外观，更要把握不同元素间的语义差异和它们向用户传达的交互模式。以目前的技术水平，让AI实现这种层次的抽象理解仍遥不可及。", "highlights": ["AI设计缺乏创新，多为对现有优秀设计的模仿", "设计需要随机性和新颖性，与软件工程对已知模式的依赖不同", "AI难以理解设计中的深层抽象概念和语义差异"], "badge": null, "title": "Why is AI so bad at design?", "url": "https://www.youtube.com/shorts/TuXk2bNwT8o", "author": "Lenny's Podcast", "published_at": "2026-07-02T18:00:31", "source_name": "Lenny's Podcast", "source_type": "youtube"}, {"id": 175, "category": "观点与评论", "title_zh": "理解即参与", "summary": "Simon Willison 分享了 Geoffrey Litt 在 AIE 大会上的演讲观点“理解以参与”。Litt 探讨了与编码智能体协作时面临的挑战：随着智能体构建的代码日益庞大复杂，开发者需避免因理解滞后而产生的“认知债务”。其核心论点是，开发者必须深入理解代码，才能作为积极的参与者与模型进一步协作。只有脑中具备丰富的概念，才能创造性地、流畅地推动项目前进；若缺乏这种流畅性，参与项目的能力将受到实质性限制。该演讲的录像将在未来三周内陆续发布。", "highlights": ["提出“理解以参与”的框架，强调人机协作中开发者深度理解代码的重要性", "引入“认知债务”概念，警示开发者避免因依赖智能体而导致理解脱节", "指出丰富的概念储备是创造性参与和推动项目前进的基础"], "badge": null, "title": "Understand to participate", "url": "https://simonwillison.net/2026/Jul/2/understand-to-participate/#atom-everything", "author": "Simon Willison", "published_at": "2026-07-02T17:07:14", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 176, "category": "观点与评论", "title_zh": "发现数学的AI，也将比我们更擅长解释数学", "summary": "Grant Sanderson（3Blue1Brown创始人）在与Dwarkesh Patel的对话中指出，历史上像爱因斯坦、香农、费曼这样的顶尖创新者，同时也是杰出的阐述者，他们的论文清晰易懂。他反思了自己过去的观点，曾认为AI将主要作为自动定理证明器，但现在他预见到数学家的角色将发生转变，会更侧重于解释和传播。他怀疑AI不仅能在数学发现上有所作为，甚至可能在解释和提炼复杂概念方面比大多数人类做得更好，而这或许才是数学家工作的核心意义所在。", "highlights": ["顶尖创新者（如爱因斯坦、香农）往往是优秀的阐述者，其论文清晰易懂。", "AI的角色可能从单纯的定理证明器，转向更擅长解释和提炼数学概念。", "提出AI在解释复杂概念方面可能超越大多数人类，这或许是数学家工作的核心。"], "badge": null, "title": "AI That Discovers Math Will Also Explain It Better Than Us - Grant Sanderson", "url": "https://www.youtube.com/shorts/kmv7ayxnE-Y", "author": "Dwarkesh Patel", "published_at": "2026-07-01T21:51:18", "source_name": "Dwarkesh Patel", "source_type": "youtube"}, {"id": 177, "category": "产品与工具", "title_zh": "Codex 应用若在 2025 年 11 月发布必败，原因在此", "summary": "OpenAI 的 Codex 应用如果在 2025 年 11 月发布将会失败，因为当时底层模型的能力不足以支撑其产品形态。该应用在次年 2 月发布时，模型性能的提升使其得以成功。这揭示了 AI 产品开发的一个核心原则：构建那些当前模型无法完美运行，但会随模型迭代而变得可行的功能。产品开发者不应因功能暂时不可用就否定其价值，而应判断其是否“尚未准备好”。早期 Codex 版本让模型自主执行并返回完整任务的设计，在当时显得过于超前，证明了产品时机与模型能力匹配的重要性。", "highlights": ["AI 产品成功的关键在于时机与底层模型能力的匹配", "应构建随模型改进而变得可行的功能，而非仅基于当前模型能力做判断", "Codex 早期自主执行任务的设计因模型能力不足而显得过早"], "badge": null, "title": "Codex App would’ve failed if released in November 2025. Here’s why;", "url": "https://www.youtube.com/shorts/d2R-PVx1zyM", "author": "Lenny's Podcast", "published_at": "2026-07-02T13:20:55", "source_name": "Lenny's Podcast", "source_type": "youtube"}, {"id": 178, "category": "行业与政策", "title_zh": "Anthropic 语录", "summary": "Anthropic 在社交媒体上宣布，美国商务部已解除对 Claude Fable 5 和 Mythos 5 模型的出口管制。公司计划从次日起恢复相关访问权限，并将在近期公布更多细节。该消息由 Simon Willison 引用并记录，反映了 AI 模型出口管制政策的近期动态变化。", "highlights": ["美国商务部解除对 Claude Fable 5 和 Mythos 5 的出口管制", "Anthropic 宣布将恢复相关模型的访问权限", "事件反映了 AI 领域出口管制政策的调整"], "badge": null, "title": "Quoting Anthropic", "url": "https://simonwillison.net/2026/Jun/30/anthropic/#atom-everything", "author": "Simon Willison", "published_at": "2026-06-30T23:58:15", "source_name": "Simon Willison", "source_type": "rss"}, {"id": 179, "category": "模型与能力", "title_zh": "纳米香蕉2轻量版", "summary": "Simon Willison 介绍了谷歌新发布的 Gemini 3.1 Flash Lite Image 模型（代号 Nano Banana 2 Lite），这是其 API 中速度最快、成本最低的图像生成模型，专为速度和规模化设计。作者在 AI Studio 中测试了该模型，使用“寻找手持业余无线电的浣熊”风格提示生成类似“威利在哪里”的图像，认为效果优于四月份测试的其他 Nano Banana 模型。但该模型在图像文字生成上仍有缺陷，将“Forest Festival”拼写错了两次。此信息源自 Hacker News。", "highlights": ["谷歌发布速度最快、成本最低的图像生成模型 Gemini 3.1 Flash Lite Image", "作者测试的‘寻找浣熊’风格图像生成效果优于前代 Nano Banana 模型", "模型在图像内文字拼写方面仍存在明显错误"], "badge": null, "title": "Nano Banana 2 Lite", "url": "https://simonwillison.net/2026/Jun/30/nano-banana-2-lite/#atom-everything", "author": "Simon Willison", "published_at": "2026-06-30T22:15:35", "source_name": "Simon Willison", "source_type": "rss"}]};</script>
+  <script>
+(function () {
+  const DATA = window.__ISSUE_DATA__;
+  const state = { viewMode: 'category', filter: 'all' };
+
+  function itemPublishedAt(item) {
+    const t = Date.parse(item.published_at);
+    return Number.isNaN(t) ? 0 : t;
+  }
+
+  function sortItemsByTimeDesc(items) {
+    return [...items].sort((a, b) => itemPublishedAt(b) - itemPublishedAt(a));
+  }
+
+  function groupItemsByCategory(items) {
+    const map = new Map();
+    for (const item of items) {
+      const cat = (item.category || '').trim() || '未分类';
+      if (!map.has(cat)) map.set(cat, []);
+      map.get(cat).push(item);
+    }
+    return [...map.entries()]
+      .map(([category, groupItems]) => ({ category, items: sortItemsByTimeDesc(groupItems) }))
+      .sort((a, b) => b.items.length - a.items.length || a.category.localeCompare(b.category, 'zh-CN'));
+  }
+
+  function groupItemsByAuthor(items) {
+    const map = new Map();
+    for (const item of items) {
+      const author = (item.author || '').trim() || '未知作者';
+      if (!map.has(author)) map.set(author, []);
+      map.get(author).push(item);
+    }
+    return [...map.entries()]
+      .map(([category, groupItems]) => ({ category, items: sortItemsByTimeDesc(groupItems) }))
+      .sort((a, b) => {
+        const latestA = Math.max(...a.items.map(itemPublishedAt));
+        const latestB = Math.max(...b.items.map(itemPublishedAt));
+        return latestB - latestA || a.category.localeCompare(b.category, 'zh-CN');
+      });
+  }
+
+  function sectionIdForView(mode, key) {
+    const prefix = mode === 'author' ? 'review-author-' : 'review-cat-';
+    return prefix + encodeURIComponent(key);
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function formatRange(since, until) {
+    if (!since || !until) return '';
+    const fmt = (iso) => {
+      const d = new Date(iso);
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}.${m}.${day}`;
+    };
+    const end = new Date(until);
+    end.setDate(end.getDate() - 1);
+    return `${fmt(since)} — ${fmt(end.toISOString())}`;
+  }
+
+  function formatDate(iso) {
+    try {
+      return new Date(iso).toLocaleDateString('zh-CN');
+    } catch {
+      return iso;
+    }
+  }
+
+  function sourceIcon(type) {
+    const normalized = (type || 'unknown').toLowerCase();
+    const cls = ['rss', 'youtube'].includes(normalized) ? normalized : 'unknown';
+    const paths = {
+      rss: '<path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82 4 16.64 5 15.64 6.18 15.64zM4 4.44A15.9 15.9 0 0 1 19.56 20h-2.83A13.07 13.07 0 0 0 4 7.27V4.44zm0 5.66a9.25 9.25 0 0 1 9.25 9.25h-2.83A6.42 6.42 0 0 0 4 12.93v-2.83z"/>',
+      youtube: '<path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>',
+      unknown: '<path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>',
+    };
+    const size = 11;
+    const svg = cls === 'unknown'
+      ? `<svg width="${size}" height="${size}" viewBox="0 0 24 24" aria-hidden="true">${paths.unknown}</svg>`
+      : `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">${paths[cls]}</svg>`;
+    return `<span class="source-type-icon source-type-icon--${cls}"><span class="source-type-icon__glyph">${svg}</span></span>`;
+  }
+
+  function renderTitle(title, titleZh) {
+    const en = (title || '').trim();
+    const zh = (titleZh || '').trim();
+    if (zh && zh !== en) {
+      return `<span class="item-title"><span class="item-title__zh">${escapeHtml(zh)}</span><span class="item-title__en" lang="en">${escapeHtml(en)}</span></span>`;
+    }
+    return `<span class="item-title item-title--single">${escapeHtml(en)}</span>`;
+  }
+
+  function renderCard(item) {
+    const highlights = (item.highlights || []).length
+      ? `<div class="insight"><div class="insight-label">亮点</div><ul style="margin:0.5rem 0 0;padding-left:1.2rem;">${item.highlights.map((h) => `<li>${escapeHtml(h)}</li>`).join('')}</ul></div>`
+      : '';
+    const badge = item.badge ? `<span class="badge">${escapeHtml(item.badge)}</span>` : '';
+    return `<article class="card card--readonly">
+      <div class="card-head">
+        <h3>${sourceIcon(item.source_type)}${renderTitle(item.title, item.title_zh)}</h3>
+        ${badge}
+      </div>
+      <p class="card-summary">${escapeHtml(item.summary)}</p>
+      ${highlights}
+      <div class="meta">
+        <span>${escapeHtml(item.author || '—')} · ${escapeHtml(item.source_name)} · ${escapeHtml(formatDate(item.published_at))}</span>
+        <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">原文</a>
+      </div>
+    </article>`;
+  }
+
+  function pickFilter(cat) {
+    state.filter = cat;
+    if (cat === 'all') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const el = document.getElementById(sectionIdForView(state.viewMode, cat));
+      el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    render();
+  }
+
+  function setViewMode(mode) {
+    state.viewMode = mode;
+    state.filter = 'all';
+    render();
+  }
+
+  function render() {
+    const items = DATA.items || [];
+    const groups = state.viewMode === 'author' ? groupItemsByAuthor(items) : groupItemsByCategory(items);
+    const counts = Object.fromEntries(groups.map((g) => [g.category, g.items.length]));
+    const categories = groups.map((g) => g.category);
+    const visibleGroups = state.filter === 'all' ? groups : groups.filter((g) => g.category === state.filter);
+    const navLabel = state.viewMode === 'author' ? '作者导航' : '分类导航';
+    const jumpLabel = state.viewMode === 'author' ? '选择作者' : '选择分类';
+    const useScroll = categories.length > 4;
+
+    const navItems = categories.map((cat) => {
+      const active = state.filter === cat ? ' is-active' : '';
+      return `<button type="button" class="category-nav__item${active}" data-filter="${escapeHtml(cat)}"><span class="category-nav__label">${escapeHtml(cat)}</span><span class="category-nav__count">${counts[cat] ?? 0}</span></button>`;
+    }).join('');
+
+    const selectOptions = [`<option value="all"${state.filter === 'all' ? ' selected' : ''}>全部（${items.length}）</option>`]
+      .concat(categories.map((cat) => `<option value="${escapeHtml(cat)}"${state.filter === cat ? ' selected' : ''}>${escapeHtml(cat)}（${counts[cat] ?? 0}）</option>`))
+      .join('');
+
+    const sections = visibleGroups.length
+      ? visibleGroups.map((group) => `<section class="review-section" id="${sectionIdForView(state.viewMode, group.category)}"><div class="review-section__head"><h2 class="review-section__title">${escapeHtml(group.category)}</h2><span class="review-section__count">${group.items.length} 条</span></div><div class="review-section__rule"></div>${group.items.map(renderCard).join('')}</section>`).join('')
+      : '<p class="empty">该期暂无已发布条目。</p>';
+
+    const root = document.getElementById('app');
+    root.innerHTML = `
+      <div class="section-header review-page__toolbar">
+        <h1 style="margin:0;">AI 周刊 2026-W27</h1>
+        <span style="color:var(--text-muted);">${items.length} 条</span>
+      </div>
+      <header class="issue-masthead">
+        <p class="issue-masthead__label">ISSUE · ${escapeHtml(DATA.week_label)}</p>
+        ${DATA.range ? `<p class="issue-masthead__range">${escapeHtml(DATA.range)}</p>` : ''}
+      </header>
+      <div class="review-view-toggle" role="group" aria-label="列表视角">
+        <button type="button" class="review-view-toggle__btn${state.viewMode === 'category' ? ' is-active' : ''}" data-view="category">按分类</button>
+        <button type="button" class="review-view-toggle__btn${state.viewMode === 'author' ? ' is-active' : ''}" data-view="author">按作者</button>
+      </div>
+      <div class="category-nav-wrap">
+        <nav class="category-nav${useScroll ? ' category-nav--scroll' : ''}" aria-label="${navLabel}">
+          <button type="button" class="category-nav__item${state.filter === 'all' ? ' is-active' : ''}" data-filter="all">全部<span class="category-nav__count">${items.length}</span></button>
+          ${navItems}
+        </nav>
+        <label class="category-nav-select">
+          <span class="visually-hidden">跳转</span>
+          <select aria-label="${jumpLabel}">${selectOptions}</select>
+        </label>
+      </div>
+      <div id="sections">${sections}</div>`;
+
+    root.querySelectorAll('[data-view]').forEach((btn) => {
+      btn.addEventListener('click', () => setViewMode(btn.getAttribute('data-view')));
+    });
+    root.querySelectorAll('[data-filter]').forEach((btn) => {
+      btn.addEventListener('click', () => pickFilter(btn.getAttribute('data-filter')));
+    });
+    const select = root.querySelector('.category-nav-select select');
+    select?.addEventListener('change', (e) => pickFilter(e.target.value));
+  }
+
+  DATA.range = formatRange(DATA.since, DATA.until);
+  render();
+})();
+</script>
+</body>
+</html>
