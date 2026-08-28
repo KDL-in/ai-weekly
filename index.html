@@ -46,83 +46,199 @@ a:hover { text-decoration: underline; }
 /* —— 刊头 —— */
 .masthead {
   text-align: center;
-  padding: 2.75rem 0 2rem;
+  padding: 2.5rem 0 1.75rem;
 }
 .masthead__brand {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(2.4rem, 7vw, 3.25rem);
+  font-size: clamp(2.5rem, 7vw, 3.4rem);
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   color: var(--text-primary);
-  line-height: 1.15;
+  line-height: 1.1;
 }
 .masthead__tagline {
-  margin: 1rem 0 0;
+  margin: 0.85rem 0 0;
   font-family: var(--font-serif);
   font-size: 1.05rem;
   color: var(--text-muted);
   font-weight: 500;
 }
+.masthead__issue {
+  margin: 1.25rem 0 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-meta);
+}
 
 .rule {
   border: 0;
   border-top: 1px solid var(--border-strong);
-  margin: 0 0 2rem;
+  margin: 0 0 1.75rem;
 }
 
 /* —— 介绍 —— */
 .intro {
   text-align: center;
-  max-width: 34em;
-  margin: 0 auto 2.25rem;
-  color: var(--text-body);
+  max-width: 32em;
+  margin: 0 auto 2.5rem;
   font-size: 0.98rem;
 }
-.intro p { margin: 0 0 0.75rem; }
-.intro p:last-child { margin-bottom: 0; color: var(--text-muted); font-size: 0.92rem; }
+.intro p { margin: 0 0 0.65rem; }
+.intro p:last-child {
+  margin-bottom: 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
 
-/* —— 订阅 —— */
-.subscribe {
+/* —— 往期 —— */
+.archives { margin-bottom: 3rem; }
+.archives__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.archives__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.archives__count {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.latest {
+  display: block;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-left: 4px solid var(--accent-red);
   border-radius: 10px;
-  padding: 1.35rem 1.4rem 1.45rem;
-  margin-bottom: 2.75rem;
+  padding: 1.35rem 1.4rem;
+  margin-bottom: 1rem;
+  color: inherit;
+  text-decoration: none;
 }
-.subscribe__title {
-  margin: 0 0 0.35rem;
+.latest:hover {
+  background: var(--bg-card-muted);
+  text-decoration: none;
+}
+.latest__label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-red);
+  margin-bottom: 0.45rem;
+}
+.latest__title {
+  display: block;
   font-family: var(--font-serif);
-  font-size: 1.2rem;
+  font-size: 1.35rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.35;
+}
+.latest__meta {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.issue-list { list-style: none; padding: 0; margin: 0; }
+.issue-list li {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--accent-insight);
+  border-radius: 10px;
+  margin-bottom: 0.55rem;
+}
+.issue-list a.issue-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.95rem 1.2rem;
+  color: inherit;
+  text-decoration: none;
+}
+.issue-list a.issue-row:hover { background: var(--bg-card-muted); }
+.issue-title {
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
   color: var(--text-primary);
   font-weight: 600;
 }
-.subscribe__desc {
-  margin: 0 0 1rem;
-  font-size: 0.9rem;
+.issue-meta {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+/* —— 底部：RSS + 信源 —— */
+.bottom {
+  border-top: 1px solid var(--border-strong);
+  padding-top: 2rem;
+}
+.bottom__label {
+  margin: 0 0 1.25rem;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
   color: var(--text-muted);
 }
-.subscribe__url-row {
-  display: flex;
-  gap: 0.5rem;
-  align-items: stretch;
-  flex-wrap: wrap;
+.bottom__grid {
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 620px) {
+  .bottom__grid { grid-template-columns: 1fr 1fr; }
+}
+
+.panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1.25rem 1.3rem 1.3rem;
+  height: 100%;
+}
+.panel--rss { border-top: 3px solid var(--accent-red); }
+.panel--sources { border-top: 3px solid var(--accent-insight); }
+.panel__title {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.panel__desc {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
 }
 .subscribe__url {
-  flex: 1 1 220px;
-  min-width: 0;
+  display: block;
+  width: 100%;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.78rem;
-  line-height: 1.4;
+  font-size: 0.74rem;
+  line-height: 1.45;
   color: var(--text-primary);
   background: var(--bg-card-muted);
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
-  padding: 0.7rem 0.85rem;
+  padding: 0.65rem 0.75rem;
   word-break: break-all;
+  margin-bottom: 0.75rem;
 }
-.subscribe__actions {
+.panel__actions {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
@@ -133,8 +249,8 @@ a:hover { text-decoration: underline; }
   background: var(--text-primary);
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 0.875rem;
-  padding: 0.65rem 1rem;
+  font-size: 0.84rem;
+  padding: 0.58rem 0.9rem;
   border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
@@ -152,99 +268,16 @@ a:hover { text-decoration: underline; }
   background: var(--accent-insight);
   border-color: var(--accent-insight);
 }
-.subscribe__hint {
-  margin: 0.85rem 0 0;
-  font-size: 0.8rem;
+.panel__hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.78rem;
   color: var(--text-meta);
-}
-
-/* —— 信源入口 —— */
-.sources-entry {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-left: 4px solid var(--accent-insight);
-  border-radius: 10px;
-  padding: 1.15rem 1.3rem;
-  margin-bottom: 2.75rem;
-}
-.sources-entry__text { min-width: 0; flex: 1 1 220px; }
-.sources-entry__title {
-  margin: 0 0 0.3rem;
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  color: var(--text-primary);
-  font-weight: 600;
-}
-.sources-entry__desc {
-  margin: 0;
-  font-size: 0.88rem;
-  color: var(--text-muted);
-}
-.sources-entry__actions {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-/* —— 往期 —— */
-.archives__head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border-subtle);
-}
-.archives__title {
-  margin: 0;
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  color: var(--text-primary);
-  font-weight: 600;
-}
-.archives__count {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-.issue-list { list-style: none; padding: 0; margin: 0; }
-.issue-list li {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-left: 4px solid var(--accent-insight);
-  border-radius: 10px;
-  margin-bottom: 0.65rem;
-}
-.issue-list a.issue-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-  color: inherit;
-  text-decoration: none;
-}
-.issue-list a.issue-row:hover { background: var(--bg-card-muted); }
-.issue-title {
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  color: var(--text-primary);
-  font-weight: 600;
-}
-.issue-meta {
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  white-space: nowrap;
+  line-height: 1.5;
 }
 
 .footer {
-  margin-top: 2.75rem;
-  padding-top: 1.1rem;
+  margin-top: 2.25rem;
+  padding-top: 1rem;
   border-top: 1px solid var(--border-subtle);
   color: var(--text-muted);
   font-size: 0.82rem;
@@ -271,6 +304,7 @@ a:hover { text-decoration: underline; }
     <header class="masthead">
       <h1 class="masthead__brand">AI 周刊</h1>
       <p class="masthead__tagline">每周精选 AI 产品、观点与趋势</p>
+      <p class="masthead__issue">ISSUE ARCHIVE · 7 期</p>
     </header>
 
     <hr class="rule">
@@ -280,37 +314,19 @@ a:hover { text-decoration: underline; }
       <p>不追热点噪音，只留对跟进行业真正有用的那几条。</p>
     </section>
 
-    <section class="subscribe" aria-label="订阅">
-      <h2 class="subscribe__title">订阅 RSS，新一期自动送达</h2>
-      <p class="subscribe__desc">只需订阅下方这一个地址。之后每期发布，你的阅读器会自动收到更新。</p>
-      <div class="subscribe__url-row">
-        <code class="subscribe__url" id="rss-url">https://kdl-in.github.io/ai-weekly/feed.xml</code>
-        <div class="subscribe__actions">
-          <button type="button" class="btn" id="copy-rss">复制链接</button>
-          <a class="btn btn--ghost" href="/ai-weekly/feed.xml" target="_blank" rel="noopener">打开 Feed</a>
-        </div>
-      </div>
-      <p class="subscribe__hint">适用于 Feedly、Inoreader、NetNewsWire、Reeder，以及系统自带的「新闻 / 邮件」等任意 RSS 阅读器。</p>
-    </section>
-
-    <section class="sources-entry" aria-label="信源列表">
-      <div class="sources-entry__text">
-        <h2 class="sources-entry__title">信源列表</h2>
-        <p class="sources-entry__desc">当前收录 23 个公开信源。欢迎提 Issue 推荐新源，我们会按社区建议扩充。</p>
-      </div>
-      <div class="sources-entry__actions">
-        <a class="btn" href="/ai-weekly/sources.html">查看列表</a>
-        <a class="btn btn--ghost" href="https://github.com/KDL-in/ai-weekly/issues/new?template=source-request.yml" target="_blank" rel="noopener">推荐信源</a>
-      </div>
-    </section>
-
     <section class="archives" aria-label="往期周刊">
       <div class="archives__head">
         <h2 class="archives__title">往期周刊</h2>
-        <span class="archives__count">共 7 期</span>
+        <span class="archives__count">最新优先</span>
       </div>
+
+      <a class="latest" href="/ai-weekly/issues/2026-W34.html">
+        <span class="latest__label">最新一期</span>
+        <span class="latest__title">AI 周刊 2026-W34</span>
+        <span class="latest__meta">08.17 — 08.23</span>
+      </a>
+
       <ul class="issue-list">
-        <li><a class="issue-row" href="/ai-weekly/issues/2026-W34.html"><span class="issue-title">AI 周刊 2026-W34</span><span class="issue-meta">08.17 — 08.23</span></a></li>
         <li><a class="issue-row" href="/ai-weekly/issues/2026-W33.html"><span class="issue-title">AI 周刊 2026-W33</span><span class="issue-meta">08.10 — 08.16</span></a></li>
         <li><a class="issue-row" href="/ai-weekly/issues/2026-W32.html"><span class="issue-title">AI 周刊 2026-W32</span><span class="issue-meta">08.03 — 08.09</span></a></li>
         <li><a class="issue-row" href="/ai-weekly/issues/2026-W29.html"><span class="issue-title">AI 周刊 2026-W29</span><span class="issue-meta">07.13 — 07.19</span></a></li>
@@ -320,9 +336,35 @@ a:hover { text-decoration: underline; }
       </ul>
     </section>
 
+    <section class="bottom" aria-label="订阅与信源">
+      <p class="bottom__label">订阅 · 信源</p>
+      <div class="bottom__grid">
+        <article class="panel panel--rss" aria-label="RSS 订阅">
+          <h3 class="panel__title">RSS 订阅</h3>
+          <p class="panel__desc">订阅下方地址，新一期发布时自动推送到阅读器。</p>
+          <code class="subscribe__url" id="rss-url">https://kdl-in.github.io/ai-weekly/feed.xml</code>
+          <div class="panel__actions">
+            <button type="button" class="btn" id="copy-rss">复制链接</button>
+            <a class="btn btn--ghost" href="/ai-weekly/feed.xml" target="_blank" rel="noopener">打开 Feed</a>
+          </div>
+          <p class="panel__hint">Feedly、Inoreader、NetNewsWire 等任意 RSS 阅读器均可。</p>
+        </article>
+
+        <article class="panel panel--sources" aria-label="信源列表">
+          <h3 class="panel__title">信源列表</h3>
+          <p class="panel__desc">当前收录 23 个公开信源。欢迎提 Issue 推荐新源，我们会按社区建议扩充。</p>
+          <div class="panel__actions">
+            <a class="btn" href="/ai-weekly/sources.html">查看列表</a>
+            <a class="btn btn--ghost" href="https://github.com/KDL-in/ai-weekly/issues/new?template=source-request.yml" target="_blank" rel="noopener">推荐信源</a>
+          </div>
+          <p class="panel__hint">列表数据公开维护于 <a href="/ai-weekly/sources.json">sources.json</a>。</p>
+        </article>
+      </div>
+    </section>
+
     <footer class="footer">
-      <span>订阅：<a href="/ai-weekly/feed.xml">RSS</a> · <a href="/ai-weekly/sources.html">信源列表</a></span>
       <span><a href="https://github.com/KDL-in/ai-weekly">GitHub</a></span>
+      <span>© AI 周刊</span>
     </footer>
   </div>
 
